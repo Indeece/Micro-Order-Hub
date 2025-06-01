@@ -2,10 +2,24 @@ server:
   port: 8081
 
 spring:
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    protocol: smtps
+    username: ${MAIL_NAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          ssl:
+            enable: true
   datasource:
-    url: jdbc:postgresql://localhost:5439/postgres
-    username: myuser
-    password: mypassword
+    url: ${DB_URL}
+    username: ${DB_NAME}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update
@@ -25,5 +39,5 @@ spring:
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
 
 jwt:
-  secret: b3MuUo7Qupt5iYQmCVRRLzHh3oHGzV1mdhzddc0UKRzmr+rDnp+FzHF88MMPKm1RT5XJ93ay77Qy03VtP27utw==
+  secret: ${SECRET}
   expirationMs: 86400000
